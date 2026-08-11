@@ -1,11 +1,12 @@
 const express = require('express');
-const booksRouter = require('./src/routes/books');
+const apiRouter = require('./src/routes/api');
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/api/books', booksRouter);
+app.use('/api', apiRouter);
+
 
 const PORT = process.env.PORT || 3000;
 

@@ -14,7 +14,7 @@ router.post('/lookup', async (req, res) => {
     }
 
     // Remove hyphens/spaces
-    const cleanISBN = isbn.replace(/[-\s]/g, '');
+    const cleanISBN = isbn.toString().replace(/[-\s]/g, '');
 
     // 1. Check if we already have this book
     const { data: existingBook, error: existingError } =
@@ -33,6 +33,7 @@ router.post('/lookup', async (req, res) => {
     }
 
     // 2. Get book from Open Library
+//`https://www.googleapis.com/books/v1/volumes?q=isbn:${cleanISBN}`
     const response = await fetch(
       `https://openlibrary.org/isbn/${cleanISBN}.json`
     );
