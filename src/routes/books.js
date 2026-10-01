@@ -6,7 +6,6 @@ const router = express.Router();
 router.post('/lookup', async (req, res) => {
   try {
     const { isbn } = req.body;
-
     if (!isbn) {
       return res.status(400).json({
         message: 'ISBN is required',
@@ -25,6 +24,7 @@ router.post('/lookup', async (req, res) => {
         .maybeSingle();
 
     if (existingError) {
+      console.log('error here', existingError)
       throw existingError;
     }
 
@@ -45,6 +45,7 @@ router.post('/lookup', async (req, res) => {
     }
 
     const openLibraryBook = await response.json();
+    console.log(openLibraryBook)
 
     // 3. Convert Open Library response
     const book = {
